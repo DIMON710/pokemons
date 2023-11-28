@@ -17,11 +17,11 @@ export default function Home() {
     if (firstPokemon.isLoading || secondPokemon.isLoading) null;
 
     const voteForRoundest = (selected: number) => {
-      if (selected === first) {
-        mutate({ voteFor: first, voteAgainst: second });
-      } else {
-        mutate({ voteFor: second, voteAgainst: first });
-      }
+        if (selected === first) {
+            mutate({ voteFor: first, voteAgainst: second });
+        } else {
+            mutate({ voteFor: second, voteAgainst: first });
+        }
         updateIds(getOptionsForVote());
     };
 
@@ -46,22 +46,22 @@ export default function Home() {
                             />
                         </>
                     )}
+                <div className="p-2" />
             </div>
+            <div className="absolute bottom-0 w-full text-xl text-center pb-2"><a href="https://github.com/DIMON710/pokemons">Github</a></div>
         </div>
     );
 }
 
-
-
-const PokemonListing: React.FC<{ pokemon: RouterOutputs['getPokemonById']; vote: () => void }> = ({
-    pokemon,
-    vote,
-}) => {
+const PokemonListing: React.FC<{
+    pokemon: RouterOutputs["getPokemonById"];
+    vote: () => void;
+}> = ({ pokemon, vote }) => {
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center relative">
             {pokemon.sprites.front_default && (
                 <Image
-                    className="w-64 h-64"
+                    layout="fixed"
                     src={pokemon.sprites.front_default}
                     alt={pokemon.name || "First pokemon"}
                     width={256}
