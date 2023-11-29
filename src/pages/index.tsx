@@ -1,6 +1,7 @@
 import { getOptionsForVote } from "@/utils/getRandomPokemon";
 import { RouterOutputs, trpc } from "@/utils/trpc";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import type React from "react";
 
@@ -24,32 +25,35 @@ export default function Home() {
         }
         updateIds(getOptionsForVote());
     };
+    const dataLoaded =
+        !firstPokemon.isLoading &&
+        !secondPokemon.isLoading &&
+        firstPokemon.data &&
+        secondPokemon.data;
 
     return (
-        <div className="mx-auto px-2 h-screen w-screen flex flex-col justify-center items-center">
-            <div className="text-2xl text-center">Wich Pokemon is Rounder?</div>
-            <div className="p-2" />
-            <div className="border rounded p-4 md:p-8 flex justify-between items-center max-w-[658px] max-h-[344px] w-full h-[344px]">
-                {!firstPokemon.isLoading &&
-                    !secondPokemon.isLoading &&
-                    firstPokemon.data &&
-                    secondPokemon.data && (
-                        <>
-                            <PokemonListing
-                                pokemon={firstPokemon.data}
-                                vote={() => voteForRoundest(first)}
-                            />
-                            <div className="p-8">Vs</div>
-                            <PokemonListing
-                                pokemon={secondPokemon.data}
-                                vote={() => voteForRoundest(second)}
-                            />
-                        </>
-                    )}
-                <div className="p-2" />
-            </div>
-            <div className="absolute bottom-0 w-full text-xl text-center pb-2">
+        <div className="mx-auto px-2 h-screen w-screen flex flex-col justify-between items-center relative">
+            <div className="text-2xl text-center pt-8">Wich Pokemon is Rounder?</div>
+            {dataLoaded && (
+                <div className="border rounded p-4 md:p-8 flex justify-between items-center max-w-2xl">
+                    <PokemonListing
+                        pokemon={firstPokemon.data}
+                        vote={() => voteForRoundest(first)}
+                    />
+                    <div className="p-8">Vs</div>
+                    <PokemonListing
+                        pokemon={secondPokemon.data}
+                        vote={() => voteForRoundest(second)}
+                    />
+                    <div className="p-2" />
+                </div>
+            )}
+            {!dataLoaded && <img src="/rings.svg" className="w-48" />}
+
+            <div className="w-full text-xl text-center pb-2">
                 <a href="https://github.com/DIMON710/pokemons">Github</a>
+                {" | "}
+                <Link href="result">Results</Link>
             </div>
         </div>
     );
