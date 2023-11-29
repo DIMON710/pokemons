@@ -26,10 +26,10 @@ export default function Home() {
     };
 
     return (
-        <div className="h-screen w-screen flex flex-col justify-center items-center">
+        <div className="mx-auto px-2 h-screen w-screen flex flex-col justify-center items-center">
             <div className="text-2xl text-center">Wich Pokemon is Rounder?</div>
             <div className="p-2" />
-            <div className="border rounded p-8 flex justify-between max-w-2xl items-center min-w-[658px] min-h-[344px]">
+            <div className="border rounded p-4 md:p-8 flex justify-between items-center max-w-[658px] max-h-[344px] w-full h-[344px]">
                 {!firstPokemon.isLoading &&
                     !secondPokemon.isLoading &&
                     firstPokemon.data &&
@@ -48,7 +48,9 @@ export default function Home() {
                     )}
                 <div className="p-2" />
             </div>
-            <div className="absolute bottom-0 w-full text-xl text-center pb-2"><a href="https://github.com/DIMON710/pokemons">Github</a></div>
+            <div className="absolute bottom-0 w-full text-xl text-center pb-2">
+                <a href="https://github.com/DIMON710/pokemons">Github</a>
+            </div>
         </div>
     );
 }
@@ -65,7 +67,7 @@ const PokemonListing: React.FC<{
                 width={256}
                 height={256}
             />
-            <div className="text-center capitalize mt-[-2rem]">
+            <div className="text-center capitalize mt-[-1rem] md:mt-[-2rem] mb-2">
                 {pokemon.name}
             </div>
             <button className={btn} onClick={vote}>
