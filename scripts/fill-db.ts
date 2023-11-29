@@ -16,8 +16,6 @@ const doBackfill = async () => {
         data: formattedPokemon,
     });
 
-    
-
     console.log("Creation?" + creation);
 }
 doBackfill();
