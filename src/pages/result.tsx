@@ -1,53 +1,53 @@
-import { GetStaticProps } from "next";
-import React from "react";
-import prisma from "@/server/utils/prisma";
+// import { GetStaticProps } from "next";
+// import React from "react";
+// import prisma from "@/server/utils/prisma";
 
-const ResultPage: React.FC<{ pokemon }> = ({ pokemon }) => {
+// const ResultPage: React.FC<{ pokemon }> = ({ pokemon }) => {
     
-    return <div>result</div>;
-}
+//     return <div>result</div>;
+// }
 
-export default ResultPage;
+// export default ResultPage;
 
-const getPokemonInOrder = async () => {
-    return prisma.pokemon.findMany({
-        orderBy: {
-            voteFor: { _count: "desc" },
-        },
-        select: {
-            id: true,
-            name: true,
-            spriteUrl: true,
-            _count: {
-                select: { 
-                    voteAgainst: true, 
-                    voteFor: true, 
-                },
-            },
-        },
-    });
-}
+// const getPokemonInOrder = async () => {
+//     return prisma.pokemon.findMany({
+//         orderBy: {
+//             voteFor: { _count: "desc" },
+//         },
+//         select: {
+//             id: true,
+//             name: true,
+//             spriteUrl: true,
+//             _count: {
+//                 select: { 
+//                     voteAgainst: true, 
+//                     voteFor: true, 
+//                 },
+//             },
+//         },
+//     });
+// }
 
-export const getStaticProps: GetStaticProps = async () => {
-    const pokemonOrdered = await prisma.pokemon.findMany({
-        orderBy: {
-            voteFor: { _count: "desc" },
-        },
-        select: {
-            id: true,
-            name: true,
-            spriteUrl: true,
-            _count: {
-                select: { 
-                    voteAgainst: true, 
-                    voteFor: true, 
-                },
-            },
-        },
-    });
-    return {
-        props: {
-            pokemon: pokemonOrdered,
-        },
-    };
-};
+// export const getStaticProps: GetStaticProps = async () => {
+//     const pokemonOrdered = await prisma.pokemon.findMany({
+//         orderBy: {
+//             voteFor: { _count: "desc" },
+//         },
+//         select: {
+//             id: true,
+//             name: true,
+//             spriteUrl: true,
+//             _count: {
+//                 select: { 
+//                     voteAgainst: true, 
+//                     voteFor: true, 
+//                 },
+//             },
+//         },
+//     });
+//     return {
+//         props: {
+//             pokemon: pokemonOrdered,
+//         },
+//     };
+// };
