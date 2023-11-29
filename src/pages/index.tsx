@@ -59,14 +59,12 @@ const PokemonListing: React.FC<{
 }> = ({ pokemon, vote }) => {
     return (
         <div className="flex flex-col items-center relative">
-            {pokemon.spriteUrl && (
-                <Image
-                    src={pokemon.spriteUrl}
-                    alt={pokemon.name || "First pokemon"}
-                    width={256}
-                    height={256}
-                />
-            )}
+            <Image
+                src={pokemon.spriteUrl}
+                alt={pokemon.name || "First pokemon"}
+                width={256}
+                height={256}
+            />
             <div className="text-center capitalize mt-[-2rem]">
                 {pokemon.name}
             </div>
