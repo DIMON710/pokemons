@@ -18,9 +18,9 @@ export default function Home() {
 
     const voteForRoundest = (selected: number) => {
         if (selected === first) {
-            mutate({ voteFor: first, voteAgainst: second });
+            mutate({ votedForId: first, votedAgainstId: second });
         } else {
-            mutate({ voteFor: second, voteAgainst: first });
+            mutate({ votedForId: second, votedAgainstId: first });
         }
         updateIds(getOptionsForVote());
     };
@@ -59,10 +59,9 @@ const PokemonListing: React.FC<{
 }> = ({ pokemon, vote }) => {
     return (
         <div className="flex flex-col items-center relative">
-            {pokemon.sprites.front_default && (
+            {pokemon.spriteUrl && (
                 <Image
-                    layout="fixed"
-                    src={pokemon.sprites.front_default}
+                    src={pokemon.spriteUrl}
                     alt={pokemon.name || "First pokemon"}
                     width={256}
                     height={256}
