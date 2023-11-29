@@ -56,7 +56,7 @@ const ResultPage: React.FC<{ pokemon: PokemonQueryResult }> = ({ pokemon }) => {
         <div className="flex flex-col items-center px-2 mx-auto">
             <h2 className="text-2xl p-4">Result</h2>
             <div className="flex flex-col w-full max-w-2xl border">
-                {pokemon.map((currentPokemon, index) => (
+                {pokemon.sort((a, b) => generateCountPercent(b) - generateCountPercent(a)).map((currentPokemon, index) => (
                     <PokemonListing key={index} pokemon={currentPokemon} />
                 ))}
             </div>
